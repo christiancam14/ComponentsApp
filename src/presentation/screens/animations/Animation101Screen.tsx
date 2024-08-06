@@ -7,8 +7,10 @@ import {
   View,
 } from 'react-native';
 import {colors} from '../../../config/theme/theme';
-import {useRef} from 'react';
+import {useContext, useRef} from 'react';
 import {useAnimation} from '../../hooks/useAnimation';
+import {ThemeContext} from '../../context/ThemeContext';
+import { CustomView } from '../../components/ui/CustomView';
 
 export const Animation101Screen = () => {
   const {
@@ -19,8 +21,10 @@ export const Animation101Screen = () => {
     startMovingTopPosition,
   } = useAnimation();
 
+  const {colors} = useContext(ThemeContext);
+
   return (
-    <View style={styles.container}>
+    <CustomView style={styles.container}>
       <Animated.View
         style={[
           styles.purpleBox,
@@ -38,13 +42,13 @@ export const Animation101Screen = () => {
           });
         }}
         style={{marginTop: 10}}>
-        <Text>FadeIn</Text>
+        <Text style={{color: colors.text}}>FadeIn</Text>
       </Pressable>
 
       <Pressable onPress={() => fadeOut({})} style={{marginTop: 10}}>
-        <Text>FadeOut</Text>
+        <Text style={{color: colors.text}}>FadeOut</Text>
       </Pressable>
-    </View>
+    </CustomView>
   );
 };
 

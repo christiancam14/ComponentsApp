@@ -3,13 +3,16 @@ import {CustomView} from '../../components/ui/CustomView';
 import {ScrollView} from 'react-native-gesture-handler';
 import {RefreshControl} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {colors, globalStyles} from '../../../config/theme/theme';
+import {ThemeContext} from '../../context/ThemeContext';
 
 export const PullToRefreshScreen = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const {top} = useSafeAreaInsets();
+
+  const {colors} = useContext(ThemeContext);
 
   const onRefresh = () => {
     setIsRefreshing(true);
@@ -29,7 +32,7 @@ export const PullToRefreshScreen = () => {
           onRefresh={onRefresh}
         />
       }
-      style={[globalStyles.mainContainer, globalStyles.globalMargin]}>
+      style={[globalStyles.mainContainer, globalStyles.globalMargin, {backgroundColor: colors.background}]}>
       <Title text="Pull to refresh" safe />
     </ScrollView>
   );
